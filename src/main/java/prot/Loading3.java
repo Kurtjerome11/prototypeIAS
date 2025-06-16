@@ -20,6 +20,7 @@ public class Loading3 {
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setBorder(BorderFactory.createEmptyBorder(40, 20, 40, 20));
 
+        
         // Logo
         ImageIcon i1 = new ImageIcon("Images//j1.png");
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
