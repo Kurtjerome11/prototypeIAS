@@ -22,7 +22,7 @@ public class Register{
 
     Register() {
 
-        ImageIcon bgIcon = new ImageIcon("C:\\Users\\Mhacee Caryl\\Downloads\\fi.gif");
+        ImageIcon bgIcon = new ImageIcon("Images//fi.gif");
         JLabel background = new JLabel(bgIcon);
         background.setBounds(0, 0, 1300, 600);
         f1.setContentPane(background);

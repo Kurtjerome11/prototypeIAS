@@ -17,7 +17,7 @@ public class Admin {
 
     Admin() {
 
-        ImageIcon bgIcon = new ImageIcon("C:\\Users\\Mhacee Caryl\\Downloads\\ad.jpg");
+        ImageIcon bgIcon = new ImageIcon("Images//ad.jpg");
         JLabel background = new JLabel(bgIcon);
         background.setBounds(0, 0, 1300, 600);
         f1.setContentPane(background);

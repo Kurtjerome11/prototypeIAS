@@ -17,7 +17,7 @@ public class Main {
 
     Main() {
 
-        ImageIcon bgIcon = new ImageIcon("C:\\Users\\Mhacee Caryl\\Downloads\\fi2.gif");
+        ImageIcon bgIcon = new ImageIcon("Images//fi2.gif");
         JLabel background = new JLabel(bgIcon);
         background.setBounds(0, 0, 1300, 600);
         f1.setContentPane(background);

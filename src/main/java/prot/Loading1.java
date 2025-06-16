@@ -21,7 +21,7 @@ public class Loading1 {
         content.setBorder(BorderFactory.createEmptyBorder(40, 20, 40, 20));
 
         // Logo
-        ImageIcon i1 = new ImageIcon("C:\\Users\\Mhacee Caryl\\Desktop\\bubuy\\j1.png");
+        ImageIcon i1 = new ImageIcon("Images//j1.png");
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         limg = new JLabel(new ImageIcon(i2));
         limg.setAlignmentX(Component.CENTER_ALIGNMENT);
