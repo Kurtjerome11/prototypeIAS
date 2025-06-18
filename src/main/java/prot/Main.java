@@ -16,8 +16,6 @@ public class Main {
     private JButton b1;
     private ScreenRecorder recorder;
     
-    
-
     Main() {  
         // Final frame settings
         f1.setSize(1200, 700);
@@ -26,7 +24,7 @@ public class Main {
         f1.setVisible(true);
     
         // For screen recorder
-        recorder = new ScreenRecorder("recordings/session_" + System.currentTimeMillis() + ".mp4", f1);
+        ScreenRecorder recorder = new ScreenRecorder(f1);
         recorder.start();
 
         ImageIcon bgIcon = new ImageIcon("Images//fi2.gif");
@@ -42,7 +40,7 @@ public class Main {
         l1.setForeground(Color.WHITE);
         
         // Text under Welcome
-        l5 = new JLabel("ASDFGHSNFGHJNSKDFN");
+        l5 = new JLabel("Your session is being recorded.");
         l5.setBounds(55, 70, 1000, 110);
         l5.setFont(new  Font("Times New Roman", Font.BOLD, 30));
         l5.setForeground(Color.WHITE);
