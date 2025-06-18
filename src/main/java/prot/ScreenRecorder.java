@@ -29,10 +29,10 @@ public class ScreenRecorder {
             captureSize = new Rectangle(location.x, location.y, size.width, size.height);
             
             recorder = new FFmpegFrameRecorder(filename, size.width, size.height);
-            recorder.setVideoCodec(avcodec.AV_CODEC_ID_MJPEG);         
-            recorder.setFormat("avi"); 
+            recorder.setVideoCodec(avcodec.AV_CODEC_ID_MPEG4);
+            recorder.setFormat("avi");
             recorder.setFrameRate(20);
-            recorder.setPixelFormat(avutil.AV_PIX_FMT_BGR24);
+            recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class ScreenRecorder {
                     BufferedImage image = robot.createScreenCapture(captureSize);
                     Frame frame = converter.convert(image);
                     recorder.record(frame);
-                    Thread.sleep(50); // ~20 fps
+                    Thread.sleep(50); //
                 }
             } catch (Exception e) {
                 e.printStackTrace();
