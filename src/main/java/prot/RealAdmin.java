@@ -24,7 +24,7 @@ public class RealAdmin {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Background image
-        ImageIcon bgIcon = new ImageIcon("Images//ra.png"); // Replace with your actual image
+        ImageIcon bgIcon = new ImageIcon("Images//al.gif");
         JLabel background = new JLabel(bgIcon);
         background.setBounds(0, 0, 1200, 700);
         frame.setContentPane(background);
@@ -60,15 +60,17 @@ public class RealAdmin {
         // Button Actions
         btnQuestionnaire.addActionListener(e -> {
             frame.dispose();
-            new Admin(); // Existing questionnaire management UI
+            new Admin(); 
         });
 
         btnUsers.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Feature coming soon: View Registered Users.");
+            frame.dispose();
+            new ViewRegisteredUser();
         });
 
         btnActivity.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Feature coming soon: View Activity Logs.");
+            frame.dispose();
+            new ViewActivityLogs();
         });
 
         btnSettings.addActionListener(e -> {

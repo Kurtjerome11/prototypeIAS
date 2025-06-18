@@ -113,31 +113,18 @@ public class Login {
         });
         
         // Register button
-        b3 = new JButton("Admin");
+         b3 = new JButton("Admin");
         b3.setBounds(1065, 605, 100, 40);
         b3.setForeground(Color.BLACK);
         b3.setFont(new Font("Calibri", Font.PLAIN, 22));
         b3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        b3.addActionListener(new ActionListener() {
-       public void actionPerformed(ActionEvent e) {
-        JPasswordField pf = new JPasswordField();
-        int okCxl = JOptionPane.showConfirmDialog(
-            f1, pf, "Enter Admin Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-        if (okCxl == JOptionPane.OK_OPTION) {
-            String adminPassword = new String(pf.getPassword());
-            if (adminPassword.equals("admin123")) {  
-                f1.dispose();
-                new RealAdmin(); 
-            } else {
-                JOptionPane.showMessageDialog(f1, "Incorrect Admin Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
-});
+        b3.addActionListener(e -> {
+            f1.dispose();
+            new AdminLogin();
+        });
 
 
-        // Add components AFTER background is set
+        //components
         f1.add(l1);
         f1.add(l3);
         f1.add(l4);
@@ -149,7 +136,7 @@ public class Login {
         f1.add(b3);
         f1.add(l2);
 
-        // Final frame settings
+        // Final frame
         f1.setSize(1200, 700);
         f1.setLocationRelativeTo(null);
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -6,7 +6,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.Vector;
-
+/**
+ *
+ * @author Harvey
+ */
 public class Admin {
     private JFrame frame;
     private JTable table;
