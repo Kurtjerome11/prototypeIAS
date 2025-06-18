@@ -80,10 +80,12 @@ public class Login {
                         st.setString(2, password);
                         ResultSet rs = st.executeQuery();
                         if (rs.next()) {
+                            logLoginAttempt(userName, "SUCCESS");
                             f1.dispose();
                             new Loading(); 
                         } else {
                             failedAttempts++;
+                            logLoginAttempt(userName, "FAILED");
                             if (failedAttempts >= 3) {
                                 lockoutLogin();
                             } else {
@@ -174,7 +176,29 @@ public class Login {
         t2.setEnabled(enabled);
         b1.setEnabled(enabled);
         b2.setEnabled(enabled);
+        
+        
     }
+    
+    private void logLoginAttempt(String username, String status) {
+    try {
+        String ipAddress = java.net.InetAddress.getLocalHost().getHostAddress();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_cite", "root", "");
+
+        String sql = "INSERT INTO user_activity (username, login_time, ip_address, status) VALUES (?, NOW(), ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, username);
+        statement.setString(2, ipAddress);
+        statement.setString(3, status);
+
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
     
 
 
