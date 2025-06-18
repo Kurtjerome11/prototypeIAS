@@ -128,7 +128,7 @@ public class Login {
             String adminPassword = new String(pf.getPassword());
             if (adminPassword.equals("admin123")) {  
                 f1.dispose();
-                new Loading3(); 
+                new RealAdmin(); 
             } else {
                 JOptionPane.showMessageDialog(f1, "Incorrect Admin Password", "Access Denied", JOptionPane.ERROR_MESSAGE);
             }
