@@ -16,7 +16,7 @@ public class ScreenRecorder {
     private Thread recordingThread;
     private Java2DFrameConverter converter = new Java2DFrameConverter();
 
-    public ScreenRecorder(String filename, JFrame frame) {
+    public ScreenRecorder(JFrame frame) {
         try {
             if (!frame.isVisible()) {
             frame.setVisible(true);
@@ -28,6 +28,11 @@ public class ScreenRecorder {
             Dimension size = frame.getSize();
             captureSize = new Rectangle(location.x, location.y, size.width, size.height);
             
+            // for specific filename with date & time
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new java.util.Date());
+            String filename = "recordings/session_" + timestamp + ".avi";
+            
+            // recording file format
             recorder = new FFmpegFrameRecorder(filename, size.width, size.height);
             recorder.setVideoCodec(avcodec.AV_CODEC_ID_MPEG4);
             recorder.setFormat("avi");
@@ -44,10 +49,18 @@ public class ScreenRecorder {
             try {
                 recorder.start();
                 while (running) {
-                    BufferedImage image = robot.createScreenCapture(captureSize);
-                    Frame frame = converter.convert(image);
-                    recorder.record(frame);
-                    Thread.sleep(50); //
+                BufferedImage screen = robot.createScreenCapture(captureSize);
+                BufferedImage formattedImage = new BufferedImage(
+                    screen.getWidth(), screen.getHeight(), BufferedImage.TYPE_3BYTE_BGR
+                );
+                Graphics2D g = formattedImage.createGraphics();
+                g.drawImage(screen, 0, 0, null);
+                g.dispose();
+
+                Frame frame = converter.convert(formattedImage);
+                recorder.record(frame);
+
+                Thread.sleep(50);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
