@@ -2,9 +2,8 @@ package prot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
+import java.io.File;
 /**
  *
  * @author Criselle Sayo
@@ -13,6 +12,8 @@ public class RecordingStorage {
     private JFrame f1 = new JFrame("Mockfinity VR: AI-Powered Job Interview Trainer");
     private JLabel l1, l2;
     private JButton b1, b2;
+    private DefaultListModel<String> listModel;
+    private JList<String> recordingList;
     
     RecordingStorage() {
         
@@ -33,6 +34,37 @@ public class RecordingStorage {
         l2.setBounds(55, 70, 1000, 110);
         l2.setFont(new  Font("Times New Roman", Font.BOLD, 30));
         l2.setForeground(Color.WHITE);
+        
+        // Dito nakastore mga recordings
+        listModel = new DefaultListModel<>();
+        loadRecordings();
+
+        recordingList = new JList<>(listModel);
+        recordingList.setFont(new Font("Calibri", Font.PLAIN, 18));
+        JScrollPane scrollPane = new JScrollPane(recordingList);
+        scrollPane.setBounds(60, 200, 500, 300); 
+        f1.add(scrollPane);
+        
+        recordingList.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+            String selectedFile = recordingList.getSelectedValue();
+            if (selectedFile != null) {
+                try {
+                    File file = new File("recordings/" + selectedFile);
+                    if (file.exists()) {
+                        Desktop.getDesktop().open(file);
+                    } else {
+                        JOptionPane.showMessageDialog(f1, "File not found.");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(f1, "Error opening file: " + ex.getMessage());
+                }
+            }
+        }
+    }
+});
         
         //Enter New Session
         b2 = new JButton("Enter New Session");
@@ -71,6 +103,20 @@ public class RecordingStorage {
         f1.add(l2);
         f1.add(b1);
         f1.add(b2);
+    }
+    
+    //to make recordings appear in scrollpane
+    private void loadRecordings() {
+        File folder = new File("recordings");
+        if (!folder.exists()) folder.mkdirs();
+
+        File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".avi"));
+
+        if (files != null) {
+            for (File file : files) {
+                listModel.addElement(file.getName());
+            }
+        }
     }
     
 }
