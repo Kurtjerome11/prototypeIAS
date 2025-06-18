@@ -16,7 +16,7 @@ public class Main {
     private JButton b1;
     private ScreenRecorder recorder;
     
-    Main() {  
+    Main() {
         // Final frame settings
         f1.setSize(1200, 700);
         f1.setLocationRelativeTo(null);

@@ -19,6 +19,7 @@ public class Login {
     private JPasswordField t2;
     private int failedAttempts = 0;
     private Timer lockoutTimer;
+    public static String loggedInUser = null;
 
     Login() {
 
@@ -80,6 +81,7 @@ public class Login {
                         st.setString(2, password);
                         ResultSet rs = st.executeQuery();
                         if (rs.next()) {
+                            loggedInUser = userName;
                             logLoginAttempt(userName, "SUCCESS");
                             f1.dispose();
                             new Loading(); 
