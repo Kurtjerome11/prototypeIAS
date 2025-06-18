@@ -1,4 +1,4 @@
-package prot;
+ package prot;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,12 +31,10 @@ public class Main {
         
         l5 = new JLabel("ASDFGHSNFGHJNSKDFN");
         l5.setBounds(55, 70, 1000, 110);
-        l5.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        l5.setFont(new  Font("Times New Roman", Font.BOLD, 30));
         l5.setForeground(Color.WHITE);
 
-       
-
-      
+        // Logout button kailangan dito
 
         // Add components AFTER background is set
         f1.add(l1);
