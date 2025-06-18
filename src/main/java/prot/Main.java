@@ -2,8 +2,7 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,11 +11,23 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
-    private JFrame f1 = new JFrame("Mockfinity VR: AI-Powered Job Interview Trainer");
+    public JFrame f1 = new JFrame("Mockfinity VR: AI-Powered Job Interview Trainer");
     private JLabel l1, l2, l3, l4, l5;
     private JButton b1;
+    private ScreenRecorder recorder;
+    
+    
 
-    Main() {
+    Main() {  
+        // Final frame settings
+        f1.setSize(1200, 700);
+        f1.setLocationRelativeTo(null);
+        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f1.setVisible(true);
+    
+        // For screen recorder
+        recorder = new ScreenRecorder("recordings/session_" + System.currentTimeMillis() + ".mp4", f1);
+        recorder.start();
 
         ImageIcon bgIcon = new ImageIcon("Images//fi2.gif");
         JLabel background = new JLabel(bgIcon);
@@ -44,6 +55,7 @@ public class Main {
         b1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                recorder.stop();
                 f1.dispose();
                 new RecordingStorage();
             }
@@ -54,12 +66,6 @@ public class Main {
         f1.add(l1);
         f1.add(l5);
         f1.add(b1);
-
-        // Final frame settings
-        f1.setSize(1200, 700);
-        f1.setLocationRelativeTo(null);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f1.setVisible(true);
     }
 
 }
