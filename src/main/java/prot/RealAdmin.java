@@ -78,9 +78,14 @@ public class RealAdmin {
         });
 
         btnLogout.addActionListener(e -> {
+            int response = JOptionPane.showConfirmDialog(frame, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
+                if (response == JOptionPane.YES_OPTION) {
             frame.dispose();
             new Login();
+                }
         });
+           
 
         frame.setVisible(true);
     }

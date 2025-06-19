@@ -24,7 +24,7 @@ public class AdminLogin {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Background
-        ImageIcon bgIcon = new ImageIcon("Images//fi1.gif");
+        ImageIcon bgIcon = new ImageIcon("Images//ad.jpg");
         JLabel background = new JLabel(bgIcon);
         background.setBounds(0, 0, 1300, 700);
         frame.setContentPane(background);
@@ -41,7 +41,7 @@ public class AdminLogin {
         subtitle = new JLabel("Administrator Login Portal");
         subtitle.setFont(new Font("Times New Roman", Font.BOLD, 30));
         subtitle.setForeground(Color.WHITE);
-        subtitle.setBounds(390, 80, 1000, 220);
+        subtitle.setBounds(390, 100, 1000, 220);
         background.add(subtitle);
 
         // Password Label

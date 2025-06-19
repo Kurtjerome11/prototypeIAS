@@ -39,7 +39,7 @@ public class ViewActivityLogs {
         title.setBounds(380, 40, 600, 60);
         background.add(title);
 
-        // Table (excluding IP address)
+        // Table
         model = new DefaultTableModel(new Object[]{"Username", "Login Time", "Status"}, 0);
         table = new JTable(model);
         table.setFont(new Font("SansSerif", Font.PLAIN, 18));

@@ -78,7 +78,7 @@ public class Loading {
 
             SwingUtilities.invokeLater(() -> {
                 f1.dispose();
-                new Main(); 
+                new Menu(); 
             });
         }
     }

@@ -127,9 +127,14 @@ public class RecordingStorage {
         b1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                f1.dispose();
-                new Login();
-            }
+                int response = JOptionPane.showConfirmDialog(f1, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
+                if (response == JOptionPane.YES_OPTION) {
+                    f1.dispose();
+                    new Login();
+                    }
+                }
+                
         });
         
         // Final frame settings
