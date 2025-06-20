@@ -6,9 +6,6 @@ package prot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  *
  * @author Harvey
@@ -40,21 +37,21 @@ public class RealAdmin {
         JButton btnQuestionnaire = createButton("Manage Questionnaire");
         JButton btnUsers = createButton("View Registered Users");
         JButton btnActivity = createButton("View Activity Logs");
-        JButton btnSettings = createButton("System Settings");
+        JButton btnFeedback = createButton("User Feedback");
         JButton btnLogout = createButton("Logout");
 
         // Set button positions
         btnQuestionnaire.setBounds(430, 150, 320, 60);
         btnUsers.setBounds(430, 230, 320, 60);
         btnActivity.setBounds(430, 310, 320, 60);
-        btnSettings.setBounds(430, 390, 320, 60);
+        btnFeedback.setBounds(430, 390, 320, 60);
         btnLogout.setBounds(430, 480, 320, 60);
 
         // Add to UI
         background.add(btnQuestionnaire);
         background.add(btnUsers);
         background.add(btnActivity);
-        background.add(btnSettings);
+        background.add(btnFeedback);
         background.add(btnLogout);
 
         // Button Actions
@@ -73,8 +70,9 @@ public class RealAdmin {
             new ViewActivityLogs();
         });
 
-        btnSettings.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Feature coming soon: System Settings.");
+        btnFeedback.addActionListener(e -> {
+            frame.dispose();
+            new Feedback();
         });
 
         btnLogout.addActionListener(e -> {

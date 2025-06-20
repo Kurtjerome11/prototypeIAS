@@ -2,7 +2,10 @@ package prot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 
 public class Main {
     public JFrame f1 = new JFrame("Mockfinity VR: AI-Powered Job Interview Trainer");
@@ -67,14 +70,41 @@ public class Main {
         submitBtn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         submitBtn.setFocusPainted(false);
         submitBtn.addActionListener(e -> {
-            String feedback = feedbackField.getText().trim();
-            if (!feedback.isEmpty()) {
-                JOptionPane.showMessageDialog(f1, "Thank you for your feedback!", "Feedback Submitted", JOptionPane.INFORMATION_MESSAGE);
-                feedbackField.setText("");
-            } else {
-                JOptionPane.showMessageDialog(f1, "Please enter your feedback before submitting.", "Empty Feedback", JOptionPane.WARNING_MESSAGE);
+        String feedback = feedbackField.getText().trim();
+        if (feedback.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter feedback before submitting.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(null, "Submit this feedback?\n\n" + feedback, "Confirm Submission", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                URL url = new URL("http://localhost/mockfinityfeedback/submit.php");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+                String urlParams = "feedback=" + URLEncoder.encode(feedback, "UTF-8");
+
+                try (OutputStream os = conn.getOutputStream()) {
+                    os.write(urlParams.getBytes());
+                }
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    JOptionPane.showMessageDialog(null, "Feedback submitted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    feedbackField.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to submit feedback.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error submitting feedback:\n" + ex.getMessage(), "Exception", JOptionPane.ERROR_MESSAGE);
             }
-        });
+        }
+    });
 
         // End Session button
         b1 = new JButton("End Session");
